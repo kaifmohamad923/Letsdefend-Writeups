@@ -35,7 +35,7 @@ The event details also showed:
 - Destination IP Address: `172.16.17.18`
 - Request Method: `GET`
 
-![Event Details](image2.png)
+![Event Details](images/image2.png)
 
 ---
 
@@ -43,7 +43,7 @@ The event details also showed:
 
 After validating the alert information, I created a case inside LetsDefend to begin the investigation workflow and document the analysis process.
 
-![Create Case](image3.png)
+![Create Case](images/image3.png)
 
 ---
 
@@ -51,7 +51,7 @@ After validating the alert information, I created a case inside LetsDefend to be
 
 The requested URL looked URL-encoded, so I copied the payload from the alert details for further analysis.
 
-![Suspicious URL](image4.png)
+![Suspicious URL](images/image4.png)
 
 ---
 
@@ -67,7 +67,7 @@ The decoded payload revealed:
 
 This is a common SQL Injection technique used to manipulate backend database queries.
 
-![Decoded Payload](image5.png)
+![Decoded Payload](images/image5.png)
 
 ---
 
@@ -77,7 +77,7 @@ To verify the reputation of the source IP, I searched the address on VirusTotal.
 
 The IP address was flagged by multiple security vendors as malicious or suspicious, increasing confidence that the activity was malicious.
 
-![VirusTotal Analysis](image6.png)
+![VirusTotal Analysis](images/image6.png)
 
 ---
 
@@ -85,7 +85,7 @@ The IP address was flagged by multiple security vendors as malicious or suspicio
 
 Based on the decoded SQL Injection payload and the malicious IP reputation, I classified the traffic as malicious inside LetsDefend.
 
-![Malicious Traffic](image7.png)
+![Malicious Traffic](images/image7.png)
 
 ---
 
@@ -95,7 +95,7 @@ I checked the related firewall logs to identify additional connections from the 
 
 Multiple requests were observed targeting the same destination server over HTTPS (port 443).
 
-![Firewall Logs](image8.png)
+![Firewall Logs](images/image8.png)
 
 ---
 
@@ -105,7 +105,7 @@ The raw logs provided additional details about the HTTP request.
 
 The request received an HTTP `200` response, which means the server processed the request successfully.
 
-![Raw Logs](image9.png)
+![Raw Logs](images/image9.png)
 
 ---
 
@@ -115,7 +115,7 @@ As a final verification step, I checked whether the traffic was part of a planne
 
 No evidence suggested that the activity was authorized, so the event was marked as `Not Planned`.
 
-![Planned Test Check](image10.png)
+![Planned Test Check](images/image10.png)
 
 ---
 
