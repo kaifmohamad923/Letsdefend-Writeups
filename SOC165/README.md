@@ -22,7 +22,7 @@ The investigation started with a high severity alert named:
 
 After opening the alert, I reviewed the event details including the source IP, destination IP, request method, and requested URL.
 
-![Alert Overview](image1.png)
+![alt text]( images/image1.png "Image" )
 
 ---
 
