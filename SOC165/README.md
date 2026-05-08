@@ -1,125 +1,136 @@
 # SOC165 - Possible SQL Injection Payload Detected
 
-## Room Link
-https://app.letsdefend.io/
-
 ## Description
-In this alert, a possible SQL Injection payload was detected targeting the web server.  
-The investigation focused on analyzing the suspicious URL, decoding the payload, checking the source IP reputation, and validating whether the traffic was malicious or part of a planned test.
+This alert was triggered after the detection of a possible SQL Injection payload targeting a web server.  
+The investigation involved analyzing the suspicious request, decoding the payload, checking IP reputation, and validating whether the activity was malicious or part of an authorized test.
 
 ---
 
 # Tools Used
 
 - LetsDefend SIEM
-- URL Decoder
 - VirusTotal
+- URL Decoder
 
 ---
 
-# Investigation Steps
+# Alert Overview
 
-## Step 1: Open the Alert
+The investigation started with a high severity alert named:
 
-The alert `SOC165 - Possible SQL Injection Payload Detected` was triggered with High severity.  
-I started the investigation by opening the alert details and reviewing the basic event information.
+`SOC165 - Possible SQL Injection Payload Detected`
 
-![image](images/image1.png)
+After opening the alert, I reviewed the event details including the source IP, destination IP, request method, and requested URL.
 
----
-
-## Step 2: Review Event Details
-
-I checked the hostname, source IP address, destination IP address, request method, and requested URL.  
-The alert reason mentioned that the requested URL contained `OR 1=1`, which is commonly used in SQL Injection attacks.
-
-![image](images/image2.png)
+![Alert Overview](image1.png)
 
 ---
 
-## Step 3: Create a Case
+# Reviewing the Event Details
 
-After reviewing the alert details, I created a case to begin the investigation process officially.  
-This helps track the alert investigation workflow inside LetsDefend.
+The alert reason mentioned that the requested URL contained the pattern `OR 1=1`, which is a well-known SQL Injection payload often used to bypass authentication systems.
 
-![image](images/image3.png)
+The event details also showed:
+- Source IP Address: `167.99.169.17`
+- Destination IP Address: `172.16.17.18`
+- Request Method: `GET`
 
----
-
-## Step 4: Copy the Suspicious URL
-
-I copied the encoded URL from the alert details for further analysis.  
-The payload looked URL-encoded and required decoding to understand the actual request.
-
-![image](images/image4.png)
+![Event Details](image2.png)
 
 ---
 
-## Step 5: Decode the URL
+# Creating the Investigation Case
 
-Using an online URL decoder, I decoded the suspicious request.  
-The decoded payload revealed the SQL Injection attempt:
+After validating the alert information, I created a case inside LetsDefend to begin the investigation workflow and document the analysis process.
+
+![Create Case](image3.png)
+
+---
+
+# Extracting the Suspicious URL
+
+The requested URL looked URL-encoded, so I copied the payload from the alert details for further analysis.
+
+![Suspicious URL](image4.png)
+
+---
+
+# Decoding the Payload
+
+I used an online URL decoder to decode the suspicious request.
+
+The decoded payload revealed:
 
 ```text
 " OR 1 = 1 --
 ```
 
-This payload is commonly used to bypass authentication or manipulate database queries.
+This is a common SQL Injection technique used to manipulate backend database queries.
 
-![image](images/image5.png)
-
----
-
-## Step 6: Investigate Source IP Reputation
-
-I searched the source IP address `167.99.169.17` on VirusTotal.  
-Multiple security vendors flagged the IP address as malicious and related to phishing/suspicious activity.
-
-![image](images/image6.png)
+![Decoded Payload](image5.png)
 
 ---
 
-## Step 7: Determine If Traffic Is Malicious
+# Investigating the Source IP
 
-Based on the SQL Injection payload and malicious IP reputation, I concluded that the traffic was malicious.  
-I selected the `Malicious` option in LetsDefend.
+To verify the reputation of the source IP, I searched the address on VirusTotal.
 
-![image](images/image7.png)
+The IP address was flagged by multiple security vendors as malicious or suspicious, increasing confidence that the activity was malicious.
 
----
-
-## Step 8: Review Firewall Logs
-
-I checked related firewall logs to identify additional traffic from the same source IP.  
-Multiple requests were observed targeting the destination server over port 443.
-
-![image](images/image8.png)
+![VirusTotal Analysis](image6.png)
 
 ---
 
-## Step 9: Analyze Raw Logs
+# Confirming Malicious Activity
 
-I opened the raw log details to review the HTTP request information.  
-The request used the GET method and received an HTTP 200 response, meaning the server processed the request successfully.
+Based on the decoded SQL Injection payload and the malicious IP reputation, I classified the traffic as malicious inside LetsDefend.
 
-![image](images/image9.png)
+![Malicious Traffic](image7.png)
 
 ---
 
-## Step 10: Check for Planned Activity
+# Reviewing Firewall Logs
 
-Finally, I verified whether the activity was part of a planned penetration test or attack simulation.  
-No evidence suggested that the traffic was authorized, so I marked it as `Not Planned`.
+I checked the related firewall logs to identify additional connections from the same IP address.
 
-![image](images/image10.png)
+Multiple requests were observed targeting the same destination server over HTTPS (port 443).
+
+![Firewall Logs](image8.png)
+
+---
+
+# Analyzing Raw Logs
+
+The raw logs provided additional details about the HTTP request.
+
+The request received an HTTP `200` response, which means the server processed the request successfully.
+
+![Raw Logs](image9.png)
+
+---
+
+# Checking for Planned Activity
+
+As a final verification step, I checked whether the traffic was part of a planned penetration test or attack simulation.
+
+No evidence suggested that the activity was authorized, so the event was marked as `Not Planned`.
+
+![Planned Test Check](image10.png)
 
 ---
 
 # Conclusion
 
-The investigation confirmed a malicious SQL Injection attempt targeting the web server.  
-The attacker used a URL-encoded SQL payload containing `OR 1=1`, and the source IP was flagged as malicious by multiple security vendors.  
-After analyzing logs and verifying the activity was not planned, the alert was classified as a true positive attack.
+The investigation confirmed a malicious SQL Injection attempt against the target web server.
+
+The attacker used a URL-encoded payload containing:
+
+```text
+" OR 1 = 1 --
+```
+
+The source IP address was also flagged as malicious by multiple vendors on VirusTotal.  
+After reviewing the logs and verifying that the activity was not part of an authorized test, the alert was classified as a true positive attack.
 
 ---
 
@@ -137,5 +148,4 @@ After analyzing logs and verifying the activity was not planned, the alert was c
 
 # Disclaimer
 
-This writeup is created for educational and documentation purposes only.  
-All investigations were performed inside the LetsDefend training platform.
+This writeup is created for educational purposes only and all analysis was performed inside the LetsDefend training platform.
