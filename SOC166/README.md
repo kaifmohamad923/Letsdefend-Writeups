@@ -177,9 +177,8 @@ Although the attacker attempted to exploit a Cross-Site Scripting (XSS) vulnerab
 ## Tools Used
 
 - LetsDefend SIEM
-- Threat Intelligence Platform
-- Firewall Logs
-- HTTP Request Analysis
+- Virustotal
+
 
 ---
 
