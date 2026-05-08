@@ -185,11 +185,8 @@ The closed alert summary confirmed:
 
 The investigation confirmed a malicious SQL Injection attempt against the target web server.
 
-The attacker used a URL-encoded payload containing:
+The attacker used a URL-encoded payload containing:" OR 1 = 1 --
 
-```text
-" OR 1 = 1 --
-```
 
 The source IP address was flagged as malicious by multiple vendors on VirusTotal.  
 Firewall and raw log analysis showed repeated suspicious requests targeting the server.  
