@@ -14,5 +14,5 @@ Here's a link to my Letsdefend profile: <https://app.letsdefend.io/user/kaifmoha
 | Alert Name | Description 
 |:---:|:---:|
 | [SOC165](SOC165/README.md) | Possible SQL Injection Payload Detected. |
-| [OhSINT](OhSINT/README.md) | OSINT challenge from a single image. |
+| [SOC166](SOC166/README.md) | Javascript Code Detected in Requested URL. |
 | [Room 3 Name](room3/README.md) |Practice using tools such as Nmap and GoBuster |
