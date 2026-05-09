@@ -15,4 +15,4 @@ Here's a link to my Letsdefend profile: <https://app.letsdefend.io/user/kaifmoha
 |:---:|:---:|
 | [SOC165](SOC165/README.md) | Possible SQL Injection Payload Detected. |
 | [SOC166](SOC166/README.md) | Javascript Code Detected in Requested URL. |
-| [SOC167](SOC167/README.md) |Practice using tools such as Nmap and GoBuster |
+| [SOC167](SOC167/README.md) | LS Command Detected in Requested URL |
