@@ -1,15 +1,15 @@
-# Letsdefend-Writeups
+# LetsDefend Write-ups
 
 ![alt text](letsdefend-logo.png "Writeup Image")
 
-This repository contains my Letsdefen writeups.
+This repository contains my LetsDefend write-ups.
 
-Check out the TryHackMe website: <https://letsdefend.io>
+Check out the LetsDefend website: <https://letsdefend.io>
 
-Here's a link to my Letsdefend profile: <https://app.letsdefend.io/user/kaifmohamad923>
+Here's a link to my LetsDefend profile: <https://app.letsdefend.io/user/kaifmohamad923>
 
 
-## Letsdefend Writeups Table
+## LetsDefend Write-ups Table
 
 | Alert Name | Description 
 |:---:|:---:|
