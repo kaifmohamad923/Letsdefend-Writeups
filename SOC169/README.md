@@ -184,15 +184,7 @@ The alert was correctly identified as a **True Positive** and escalated for furt
 - Raw Log Analysis
 - Incident Playbook
 
----
 
-# MITRE ATT&CK Mapping
-
-| Technique ID | Description |
-|---|---|
-| T1190 | Exploit Public-Facing Application |
-
----
 
 # Disclaimer
 
