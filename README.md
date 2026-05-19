@@ -18,4 +18,4 @@ Here's a link to my LetsDefend profile: <https://app.letsdefend.io/user/kaifmoha
 | [SOC167](SOC167/README.md) | LS Command Detected in Requested URL |
 | [SOC169](SOC169/README.md) | Possible IDOR Attack Detected |
 | [SOC170](SOC170/README.md) | Passwd Found in Requested URL - Possible LFI Attack |
-| [SOC170](SOC104/README.md) | Malware Detected |
+| [SOC104](SOC104/README.md) | Malware Detected |
